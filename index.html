@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Nexus Security – Professional Security Scanner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="data-stream"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>NEXUS</span> SECURITY
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#plans">Plans</a>
+            <a href="#" class="btn-outline" id="createAccountBtn">Create account</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>AI‑Powered Scan</h1>
+            <p>Detect security flaws before attackers do. Get detailed reports with actionable fixes.</p>
+
+            <!-- BLOB BUTTON for Get Started -->
+            <div class="buttons">
+                <button class="blob-btn" id="heroGetStarted">
+                    Get Started →
+                    <span class="blob-btn__inner">
+                        <span class="blob-btn__blobs">
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                            <span class="blob-btn__blob"></span>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Three Scan Type Cards -->
+        <div class="scan-types">
+            <div class="type-card">
+                <i class="fas fa-search"></i>
+                <h3>Basic Scan</h3>
+                <p>2–3 vulnerabilities on first pages. Free, email report.</p>
+                <span class="tag">Ideal for quick checks</span>
+            </div>
+            <div class="type-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Advanced Scan</h3>
+                <p>Full website crawl. Medium & low severity bugs. Detailed guide.</p>
+                <span class="tag">Most popular</span>
+            </div>
+            <div class="type-card">
+                <i class="fas fa-shield-virus"></i>
+                <h3>Protection+ Scan</h3>
+                <p>Deep scan entire site. All vulnerabilities, critical included. Compliance mapping.</p>
+                <span class="tag">Enterprise grade</span>
+            </div>
+        </div>
+
+        <!-- Additional Stats -->
+        <div class="info-stats">
+            <div class="info-item">
+                <i class="fas fa-chart-simple"></i>
+                <span class="info-number">99%</span>
+                <span class="info-label">Accuracy</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <span class="info-number">24h</span>
+                <span class="info-label">Report time</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-user-check"></i>
+                <span class="info-number">Profile</span>
+                <span class="info-label">Delivery</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="plans-section" id="plans">
+        <h2>Choose Your Plan</h2>
+        <div class="plans-container">
+            <!-- Basic Plan -->
+            <div class="plan-card">
+                <div class="plan-icon"><i class="fas fa-search"></i></div>
+                <h3>Basic Scan</h3>
+                <div class="price">Free</div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> 2–3 vulnerabilities detected</li>
+                    <li><i class="fas fa-check-circle"></i> First 2‑3 pages only</li>
+                    <li><i class="fas fa-check-circle"></i> Email report delivery</li>
+                    <li><i class="fas fa-check-circle"></i> 24h turnaround</li>
+                </ul>
+                <!-- Basic button (transparent style) -->
+                <button class="btn-53 basic-start" data-plan="basic">
+                    <div class="original">SELECT PLAN</div>
+                    <div class="letters">
+                        <span>S</span><span>E</span><span>L</span><span>E</span><span>C</span><span>T</span>
+                        <span>&nbsp;</span>
+                        <span>P</span><span>L</span><span>A</span><span>N</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Advanced Plan (with animated background) -->
+            <div class="plan-card popular advanced-card">
+                <div class="popular-badge">MOST POPULAR</div>
+                <div class="plan-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Advanced Scan</h3>
+                <div class="price">₹99 <span>/ scan</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Full website crawl</li>
+                    <li><i class="fas fa-check-circle"></i> Medium & low severity bugs</li>
+                    <li><i class="fas fa-check-circle"></i> Detailed remediation guide</li>
+                    <li><i class="fas fa-check-circle"></i> Priority processing</li>
+                </ul>
+                <!-- Advanced button (dark theme) -->
+                <button class="btn-53" data-plan="advanced">
+                    <div class="original">SELECT PLAN</div>
+                    <div class="letters">
+                        <span>S</span><span>E</span><span>L</span><span>E</span><span>C</span><span>T</span>
+                        <span>&nbsp;</span>
+                        <span>P</span><span>L</span><span>A</span><span>N</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Protection+ Plan -->
+            <div class="plan-card">
+                <div class="plan-icon"><i class="fas fa-shield-virus"></i></div>
+                <h3>Protection+</h3>
+                <div class="price">₹999 <span>/ scan</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Deep‑scan entire website</li>
+                    <li><i class="fas fa-check-circle"></i> All vulnerabilities (incl. critical)</li>
+                    <li><i class="fas fa-check-circle"></i> Compliance mapping (OWASP, CWE)</li>
+                    <li><i class="fas fa-check-circle"></i> Consultation call included</li>
+                </ul>
+                <!-- Protection+ button (dark theme) -->
+                <button class="btn-53" data-plan="protection_plus">
+                    <div class="original">SELECT PLAN</div>
+                    <div class="letters">
+                        <span>S</span><span>E</span><span>L</span><span>E</span><span>C</span><span>T</span>
+                        <span>&nbsp;</span>
+                        <span>P</span><span>L</span><span>A</span><span>N</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Nexus Security. All rights reserved. | Protecting your digital assets.</p>
+    </footer>
+
+    <!-- Modal (Sign Up) -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Create Your Account</h2>
+            <p>Sign up with Google to start your scan.</p>
+            <button id="googleSignIn" class="btn-google">
+                <i class="fab fa-google"></i> Continue with Google
+            </button>
+            <p class="modal-note">* This is a demo – no actual scan will be performed yet.</p>
+        </div>
+    </div>
+
+    <!-- SVG filter for blob button -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+
+    <script src="script.js"></script>
+</body>
+</html>
