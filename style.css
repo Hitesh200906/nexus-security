@@ -14,9 +14,7 @@ html {
 :root {
     --bg-dark: #000000;
     --bg-surface: #0a0a0f;
-    --bg-card: #000000;            /* pure black for plan cards */
-    --primary: #1e3a5f;
-    --primary-light: #2c5282;
+    --bg-card: #000000;
     --accent: #2f9b9b;
     --accent-light: #3fb4b4;
     --text: #f8fafc;
@@ -39,98 +37,17 @@ body {
     position: relative;
 }
 
-/* ============================================
-   SECURITY BACKGROUND ANIMATIONS
-============================================ */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(47, 155, 155, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(47, 155, 155, 0.08) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-    animation: gridMove 20s linear infinite;
-}
-
-@keyframes gridMove {
-    0% { background-position: 0 0; }
-    100% { background-position: 40px 40px; }
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 40%, rgba(47, 155, 155, 0.1) 0%, transparent 60%),
-                radial-gradient(circle at 80% 70%, rgba(47, 155, 155, 0.08) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    animation: pulseGlow 8s ease-in-out infinite alternate;
-}
-
-@keyframes pulseGlow {
-    0% { opacity: 0.3; transform: scale(1); }
-    100% { opacity: 0.6; transform: scale(1.05); }
-}
-
-/* Data stream animation */
-.data-stream {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-.data-stream::before,
-.data-stream::after {
-    content: '';
-    position: absolute;
-    width: 200%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(47, 155, 155, 0.3), transparent);
-    animation: streamMove 12s linear infinite;
-}
-.data-stream::before {
-    top: 30%;
-    left: -100%;
-    animation-delay: 0s;
-}
-.data-stream::after {
-    top: 70%;
-    left: -100%;
-    animation-delay: 5s;
-}
-@keyframes streamMove {
-    0% { left: -100%; opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { left: 100%; opacity: 0; }
-}
-
 /* Ensure content above background */
 .navbar,
 .hero,
 .plans-section,
+.how-it-works,
 footer {
     position: relative;
     z-index: 1;
 }
 
-/* ============================================
-   CUSTOM SCROLLBAR
-============================================ */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -148,63 +65,173 @@ footer {
 }
 
 /* ============================================
-   NAVBAR STYLES
+   NAVBAR STYLES (logo left, vertically centered)
 ============================================ */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 2rem;
+    padding: 0.8rem 2rem;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(47, 155, 155, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.logo {
-    font-size: 1.6rem;
-    font-weight: 800;
+.logo-container {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    letter-spacing: -0.5px;
+    flex-shrink: 0;
 }
 
-.logo span {
-    background: linear-gradient(135deg, #fff, var(--accent-light));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.title-ghost-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.title-ghost-wrapper h1 {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    font-weight: 900;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    margin: 0;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.ghost {
+    width: 6vmin;
+    height: 9vmin;
+    background-color: #ffffff;
+    background-image: radial-gradient(ellipse at 35% 40%, #000 8%, transparent 0%),
+                      radial-gradient(ellipse at 65% 40%, #000 8%, transparent 0%),
+                      radial-gradient(ellipse at 50% 60%, #000 8%, transparent 0%);
+    border-radius: 100% / 70% 70% 0% 0%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) translateX(30em) rotateZ(-90deg);
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    animation: ghostMove 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+@keyframes ghostMove {
+    0% {
+        transform: translateY(-50%) translateX(30em) rotateZ(-90deg);
+    }
+    100% {
+        transform: translateY(-50%) translateX(-35em) rotateZ(-90deg);
+    }
+}
+.ghost div {
+    position: absolute;
+    width: 20%;
+    background-color: #ffffff;
+}
+.ghost div:nth-of-type(1) {
+    height: 5vmin;
+    left: 0;
+    bottom: -4.5vmin;
+    border-radius: 100% / 0% 0% 50% 50%;
+}
+.ghost div:nth-of-type(2),
+.ghost div:nth-of-type(4) {
+    height: 3vmin;
+    left: 20%;
+    bottom: -2.5vmin;
+    border-radius: 100% / 50% 50% 0% 0%;
+    background-color: transparent;
+}
+.ghost div:nth-of-type(3) {
+    height: 3vmin;
+    left: 40%;
+    bottom: -3vmin;
+    border-radius: 100% / 0% 0% 60% 60%;
+    background-color: #ffffff;
+}
+.ghost div:nth-of-type(4) {
+    left: 60%;
+}
+.ghost div:nth-of-type(5) {
+    height: 2.5vmin;
+    left: 80%;
+    bottom: -2.2vmin;
+    border-radius: 100% / 0% 0% 70% 70%;
+    background-color: #ffffff;
 }
 
 .nav-links {
     display: flex;
     gap: 2rem;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1rem;
     transition: var(--transition);
 }
 .nav-links a:hover {
     color: var(--text);
 }
 
-.btn-outline {
-    background: transparent;
-    border: 1.5px solid var(--accent);
-    padding: 0.5rem 1.2rem;
-    border-radius: 40px;
-    transition: var(--transition);
+/* Create Account Button (skewed design) */
+#createAccountBtn {
+    background: #000000;
+    border: none;
+    padding: 8px 18px;
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: auto;
+    text-transform: uppercase;
+    cursor: pointer;
+    transform: skew(-21deg);
+    transition: all 0.5s;
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 0;
 }
-.btn-outline:hover {
-    background: rgba(47, 155, 155, 0.1);
-    transform: translateY(-2px);
+
+#createAccountBtn span {
+    display: inline-block;
+    transform: skew(21deg);
+}
+
+#createAccountBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    left: 0;
+    background: rgb(255, 255, 255);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.5s;
+}
+
+#createAccountBtn:hover {
+    color: #000000;
+}
+
+#createAccountBtn:hover::before {
+    left: 0;
+    right: 0;
+    opacity: 1;
 }
 
 /* ============================================
@@ -223,10 +250,7 @@ footer {
 .hero-content h1 {
     font-size: clamp(2.8rem, 8vw, 5.2rem);
     font-weight: 800;
-    background: linear-gradient(135deg, #fff, var(--accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #ffffff;
     margin-bottom: 1.5rem;
     animation: fadeUp 0.8s ease-out;
 }
@@ -240,125 +264,173 @@ footer {
 }
 
 /* ============================================
-   BLOB BUTTON (Get Started)
+   GET STARTED BUTTON (Black & White Theme)
 ============================================ */
 .buttons {
     margin-top: 1rem;
     text-align: center;
-    border-radius: 30px;
 }
 
-.blob-btn {
-    z-index: 1;
-    position: relative;
-    padding: 1rem 2rem;
-    margin-bottom: 0;
-    text-align: center;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    transition: color 0.5s;
+.button {
+    --h-button: 48px;
+    --w-button: 102px;
+    --round: 0.75rem;
     cursor: pointer;
-    border-radius: 30px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    background: #111;
+    border-radius: var(--round);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    outline: none;
+    padding: 12px 18px;
+}
+.button::before,
+.button::after {
+    content: "";
+    position: absolute;
+    inset: var(--space);
+    transition: all 0.5s ease-in-out;
+    border-radius: calc(var(--round) - var(--space));
+    z-index: 0;
+}
+.button::before {
+    --space: 1px;
+    background: linear-gradient(
+        177.95deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+.button::after {
+    --space: 2px;
+    background: #0a0a0a;
+}
+.button:active {
+    transform: scale(0.95);
 }
 
-.blob-btn:before {
-    content: "";
+.fold {
     z-index: 1;
     position: absolute;
-    left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid var(--accent);
-    border-radius: 30px;
+    right: 0;
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    transition: all 0.5s ease-in-out;
+    background: radial-gradient(
+        100% 75% at 55%,
+        rgba(80, 80, 80, 0.6) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    border-bottom-left-radius: 0.5rem;
+    border-top-right-radius: var(--round);
 }
-
-.blob-btn:after {
+.fold::after {
     content: "";
-    z-index: -2;
     position: absolute;
-    left: 3px;
-    top: 3px;
-    width: 100%;
-    height: 100%;
-    transition: all 0.3s 0.2s;
-    border-radius: 30px;
-}
-
-.blob-btn:hover {
-    color: #ffffff;
-}
-
-.blob-btn:hover:after {
-    transition: all 0.3s;
-    left: 0;
     top: 0;
+    right: 0;
+    width: 150%;
+    height: 150%;
+    transform: rotate(45deg) translateX(0%) translateY(-18px);
+    background-color: #1a1a1a;
+    pointer-events: none;
+}
+.button:hover .fold {
+    margin-top: -1rem;
+    margin-right: -1rem;
 }
 
-.blob-btn__inner {
-    z-index: -1;
+.points_wrapper {
     overflow: hidden;
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 100%;
     height: 100%;
-    border-radius: 30px;
-    background: #ffffff;
-}
-
-.blob-btn__blobs {
-    position: relative;
-    display: block;
-    height: 100%;
-    filter: url('#goo');
-}
-
-.blob-btn__blob {
+    pointer-events: none;
     position: absolute;
-    top: 2px;
-    width: 25%;
-    height: 100%;
-    background: var(--accent);
-    border-radius: 100%;
-    transform: translate3d(0, 150%, 0) scale(1.7);
-    transition: transform 0.45s;
+    z-index: 1;
 }
 
-@supports (filter: url('#goo')) {
-    .blob-btn__blob {
-        transform: translate3d(0, 150%, 0) scale(1.4);
+.points_wrapper .point {
+    bottom: -10px;
+    position: absolute;
+    animation: floating-points infinite ease-in-out;
+    pointer-events: none;
+    width: 2px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 9999px;
+}
+@keyframes floating-points {
+    0% {
+        transform: translateY(0);
+    }
+    85% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(-55px);
+        opacity: 0;
     }
 }
+.points_wrapper .point:nth-child(1) { left: 10%; opacity: 1; animation-duration: 2.35s; animation-delay: 0.2s; }
+.points_wrapper .point:nth-child(2) { left: 30%; opacity: 0.7; animation-duration: 2.5s; animation-delay: 0.5s; }
+.points_wrapper .point:nth-child(3) { left: 25%; opacity: 0.8; animation-duration: 2.2s; animation-delay: 0.1s; }
+.points_wrapper .point:nth-child(4) { left: 44%; opacity: 0.6; animation-duration: 2.05s; }
+.points_wrapper .point:nth-child(5) { left: 50%; opacity: 1; animation-duration: 1.9s; }
+.points_wrapper .point:nth-child(6) { left: 75%; opacity: 0.5; animation-duration: 1.5s; animation-delay: 1.5s; }
+.points_wrapper .point:nth-child(7) { left: 88%; opacity: 0.9; animation-duration: 2.2s; animation-delay: 0.2s; }
+.points_wrapper .point:nth-child(8) { left: 58%; opacity: 0.8; animation-duration: 2.25s; animation-delay: 0.2s; }
+.points_wrapper .point:nth-child(9) { left: 98%; opacity: 0.6; animation-duration: 2.6s; animation-delay: 0.1s; }
+.points_wrapper .point:nth-child(10) { left: 65%; opacity: 1; animation-duration: 2.5s; animation-delay: 0.2s; }
 
-.blob-btn__blob:nth-child(1) {
-    left: 0%;
-    transition-delay: 0s;
-}
-.blob-btn__blob:nth-child(2) {
-    left: 30%;
-    transition-delay: 0.08s;
-}
-.blob-btn__blob:nth-child(3) {
-    left: 60%;
-    transition-delay: 0.16s;
-}
-.blob-btn__blob:nth-child(4) {
-    left: 90%;
-    transition-delay: 0.24s;
+.inner {
+    z-index: 2;
+    gap: 6px;
+    position: relative;
+    width: 100%;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    transition: color 0.2s ease-in-out;
 }
 
-.blob-btn:hover .blob-btn__blob {
-    transform: translateZ(0) scale(1.7);
+.inner svg.icon {
+    width: 18px;
+    height: 18px;
+    transition: fill 0.1s linear;
+    stroke: white;
 }
-@supports (filter: url('#goo')) {
-    .blob-btn:hover .blob-btn__blob {
-        transform: translateZ(0) scale(1.4);
+
+.button:focus svg.icon {
+    fill: white;
+}
+.button:hover svg.icon {
+    fill: transparent;
+    animation:
+        dasharray 1s linear forwards,
+        filled 0.1s linear forwards 0.95s;
+}
+@keyframes dasharray {
+    from {
+        stroke-dasharray: 0 0 0 0;
+    }
+    to {
+        stroke-dasharray: 68 68 0 0;
+    }
+}
+@keyframes filled {
+    to {
+        fill: white;
     }
 }
 
@@ -480,10 +552,10 @@ footer {
 .plans-section h2 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    background: linear-gradient(135deg, #fff, var(--accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #ffffff;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
 }
 .plans-container {
     display: flex;
@@ -569,18 +641,15 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-/* ============================================
-   PRICE STYLES (with dot pattern)
-============================================ */
+/* Price Styles (with dot pattern) */
 .price {
     font-size: 2.2rem;
     font-weight: 800;
-    color: #ffffff; /* white text */
+    color: #ffffff;
     margin: 1rem 0;
     position: relative;
     display: inline-block;
 }
-/* Dot pattern only – no shield */
 .price::before {
     content: '';
     position: absolute;
@@ -595,16 +664,13 @@ footer {
     z-index: -1;
     opacity: 0.5;
 }
-/* No ::after shield */
 .price span {
     font-size: 1rem;
     font-weight: normal;
     color: var(--text-muted);
 }
 
-/* ============================================
-   FEATURES LIST
-============================================ */
+/* Features List */
 .features {
     list-style: none;
     text-align: left;
@@ -623,12 +689,7 @@ footer {
     width: 20px;
 }
 
-/* ============================================
-   BUTTONS (Start Scan)
-   - General button styles (btn-53)
-   - Basic button variant (basic-start)
-   - Advanced & Protection+ buttons hover
-============================================ */
+/* ========== BUTTONS (Start Scan) ========== */
 .btn-53,
 .btn-53 *,
 .btn-53 :after,
@@ -656,7 +717,7 @@ footer {
     padding: 0;
     width: 100%;
     margin-top: 1rem;
-    border-radius: 24px;         /* more rounded */
+    border-radius: 24px;
     border-width: 1px;
     border-style: solid;
 }
@@ -683,7 +744,7 @@ footer {
     display: block;
     font-weight: 900;
     overflow: hidden;
-    padding: 0.7rem 1rem;        /* smaller vertical padding */
+    padding: 0.7rem 1rem;
     position: relative;
     text-transform: uppercase;
     background: black;
@@ -759,9 +820,9 @@ footer {
     transition-delay: 0.55s;
 }
 
-/* ----- BASIC BUTTON (solid black, stays black on hover) ----- */
+/* Basic Button (solid black, stays black on hover) */
 .basic-start {
-    background: black;          /* solid black by default */
+    background: black;
     border: 1px solid rgba(255, 255, 255, 0.5);
     color: #fff;
 }
@@ -775,20 +836,106 @@ footer {
 .basic-start .letters {
     color: #fff;
 }
-/* Keep background black on hover */
 .basic-start:hover {
     background: #000000;
 }
 
-/* ----- ADVANCED & PROTECTION+ BUTTONS (hover becomes black) ----- */
+/* Advanced & Protection+ Buttons (hover becomes black) */
 .btn-53:not(.basic-start):hover {
-    background: #000000;          /* turns black on hover */
+    background: #000000;
     border-color: #fff;
 }
 
 /* ============================================
-   FOOTER
+   HOW OUR AI WORKS SECTION
 ============================================ */
+.how-it-works {
+    padding: 5rem 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.how-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.how-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.how-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+}
+
+.how-text p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.how-text ul {
+    list-style: disc;
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+}
+
+.how-text ul li {
+    margin: 1.8rem 0;
+    color: var(--text);
+}
+
+.how-text ul li h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.how-text ul li p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.report-note {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 500;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+}
+
+.how-video {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    height: 360px;
+}
+.how-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 2rem;
@@ -797,9 +944,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ============================================
-   MODAL
-============================================ */
+/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -867,9 +1012,7 @@ footer {
     color: #6b7280;
 }
 
-/* ============================================
-   ANIMATIONS
-============================================ */
+/* Animations */
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -891,18 +1034,38 @@ footer {
     }
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-============================================ */
+/* Responsive */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+        align-items: center;
+        text-align: center;
+        padding: 0.8rem 1rem;
+        gap: 0.5rem;
+    }
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+    }
+    .title-ghost-wrapper h1 {
+        font-size: clamp(1.2rem, 6vw, 1.8rem);
+        white-space: normal;
+        text-align: center;
     }
     .nav-links {
-        gap: 1.2rem;
+        justify-content: center;
+        width: 100%;
+        gap: 1.5rem;
     }
+    .ghost {
+        width: 8vmin;
+        height: 12vmin;
+    }
+    .ghost div:nth-of-type(1) { height: 6vmin; bottom: -5.5vmin; }
+    .ghost div:nth-of-type(2), .ghost div:nth-of-type(4) { height: 4vmin; bottom: -3vmin; }
+    .ghost div:nth-of-type(3) { height: 4vmin; bottom: -3.5vmin; }
+    .ghost div:nth-of-type(5) { height: 3vmin; bottom: -2.5vmin; }
+    
     .scan-types {
         gap: 1.5rem;
     }
@@ -930,12 +1093,14 @@ footer {
     .plan-card h3 {
         font-size: 1.4rem;
     }
-    .blob-btn {
-        padding: 0.8rem 1.6rem;
-        font-size: 0.9rem;
+    .button {
+        padding: 10px 16px;
+    }
+    .inner {
+        font-size: 14px;
     }
     .btn-53 {
-        padding: 0.6rem 0.8rem;   /* even smaller on mobile */
+        padding: 0.6rem 0.8rem;
         font-size: 0.75rem;
         border-radius: 20px;
     }
@@ -945,5 +1110,20 @@ footer {
     .price::before {
         left: -10px;
         right: -10px;
+    }
+    .how-container {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    .how-text ul {
+        text-align: left;
+    }
+    .how-video {
+        height: 240px;
+    }
+    #createAccountBtn {
+        padding: 8px 16px;
+        font-size: 13px;
     }
 }

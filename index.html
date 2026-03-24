@@ -6,20 +6,28 @@
     <title>Nexus Security – Professional Security Scanner</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="data-stream"></div>
-
-    <!-- Navigation -->
+    <!-- Navbar with logo on left, links on right -->
     <nav class="navbar">
-        <div class="logo">
-            <span>NEXUS</span> SECURITY
+        <div class="logo-container">
+            <div class="title-ghost-wrapper">
+                <h1>NEXUS SECURITY</h1>
+                <div class="ghost">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#plans">Plans</a>
-            <a href="#" class="btn-outline" id="createAccountBtn">Create account</a>
+            <a href="#" id="createAccountBtn"><span>Create account</span></a>
         </div>
     </nav>
 
@@ -29,17 +37,27 @@
             <h1>AI‑Powered Scan</h1>
             <p>Detect security flaws before attackers do. Get detailed reports with actionable fixes.</p>
 
-            <!-- BLOB BUTTON for Get Started -->
+            <!-- GET STARTED BUTTON (Black & White) -->
             <div class="buttons">
-                <button class="blob-btn" id="heroGetStarted">
-                    Get Started →
-                    <span class="blob-btn__inner">
-                        <span class="blob-btn__blobs">
-                            <span class="blob-btn__blob"></span>
-                            <span class="blob-btn__blob"></span>
-                            <span class="blob-btn__blob"></span>
-                            <span class="blob-btn__blob"></span>
-                        </span>
+                <button type="button" class="button" id="heroGetStarted">
+                    <span class="fold"></span>
+                    <div class="points_wrapper">
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                        <i class="point"></i>
+                    </div>
+                    <span class="inner">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+                            <polyline points="13.18 1.37 13.18 9.64 21.45 9.64 10.82 22.63 10.82 14.36 2.55 14.36 13.18 1.37"></polyline>
+                        </svg>
+                        Get Started
                     </span>
                 </button>
             </div>
@@ -100,9 +118,8 @@
                     <li><i class="fas fa-check-circle"></i> 2–3 vulnerabilities detected</li>
                     <li><i class="fas fa-check-circle"></i> First 2‑3 pages only</li>
                     <li><i class="fas fa-check-circle"></i> Email report delivery</li>
-                    <li><i class="fas fa-check-circle"></i> 24h turnaround</li>
+                    <li><i class="fas fa-check-circle"></i> 10‑minute scan</li>
                 </ul>
-                <!-- Basic button (transparent style) -->
                 <button class="btn-53 basic-start" data-plan="basic">
                     <div class="original">SELECT PLAN</div>
                     <div class="letters">
@@ -123,9 +140,8 @@
                     <li><i class="fas fa-check-circle"></i> Full website crawl</li>
                     <li><i class="fas fa-check-circle"></i> Medium & low severity bugs</li>
                     <li><i class="fas fa-check-circle"></i> Detailed remediation guide</li>
-                    <li><i class="fas fa-check-circle"></i> Priority processing</li>
+                    <li><i class="fas fa-check-circle"></i> ~5 hours (500 pages)</li>
                 </ul>
-                <!-- Advanced button (dark theme) -->
                 <button class="btn-53" data-plan="advanced">
                     <div class="original">SELECT PLAN</div>
                     <div class="letters">
@@ -145,9 +161,8 @@
                     <li><i class="fas fa-check-circle"></i> Deep‑scan entire website</li>
                     <li><i class="fas fa-check-circle"></i> All vulnerabilities (incl. critical)</li>
                     <li><i class="fas fa-check-circle"></i> Compliance mapping (OWASP, CWE)</li>
-                    <li><i class="fas fa-check-circle"></i> Consultation call included</li>
+                    <li><i class="fas fa-check-circle"></i> ~10 hours (500 pages)</li>
                 </ul>
-                <!-- Protection+ button (dark theme) -->
                 <button class="btn-53" data-plan="protection_plus">
                     <div class="original">SELECT PLAN</div>
                     <div class="letters">
@@ -156,6 +171,41 @@
                         <span>P</span><span>L</span><span>A</span><span>N</span>
                     </div>
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Our AI Works Section -->
+    <section class="how-it-works">
+        <div class="how-container">
+            <div class="how-text">
+                <h2>How Our AI Works</h2>
+                <p>Our intelligent AI engine performs a deep, automated security audit. Here's the process:</p>
+                <ul>
+                    <li>
+                        <h3>Link Analysis</h3>
+                        <p>We start with your website's URL and automatically discover all internal links, forms, and entry points.</p>
+                    </li>
+                    <li>
+                        <h3>Page‑by‑Page Exploration</h3>
+                        <p>The AI visits every page, clicks every button, and tests every interactive element just like a real user.</p>
+                    </li>
+                    <li>
+                        <h3>Vulnerability Detection</h3>
+                        <p>We simulate real‑world attacks to uncover SQL injection, XSS, misconfigurations, and other security flaws.</p>
+                    </li>
+                    <li>
+                        <h3>Smart Reporting</h3>
+                        <p>All findings are prioritised, with step‑by‑step fixes tailored to your selected plan.</p>
+                    </li>
+                </ul>
+                <p class="report-note">You will receive your detailed report in HTML format directly on your profile page within 24 hours.</p>
+            </div>
+            <div class="how-video">
+                <video autoplay muted loop playsinline>
+                    <source src="https://cdn.pixabay.com/video/2022/02/28/111497-687598868_large.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
     </section>
@@ -177,17 +227,6 @@
             <p class="modal-note">* This is a demo – no actual scan will be performed yet.</p>
         </div>
     </div>
-
-    <!-- SVG filter for blob button -->
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: absolute; width: 0; height: 0;">
-        <defs>
-            <filter id="goo">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-                <feBlend in="SourceGraphic" in2="goo" />
-            </filter>
-        </defs>
-    </svg>
 
     <script src="script.js"></script>
 </body>
